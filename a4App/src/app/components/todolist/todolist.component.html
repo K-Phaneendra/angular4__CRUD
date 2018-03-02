@@ -1,0 +1,27 @@
+<div>
+  <form (submit)="addNewtodo(todo.value)">
+    <input type="text" placeholder="add new item" #todo />
+  </form>
+  <table>
+    <tr>
+      <td>Sno.</td>
+      <td>To Do Items</td>
+      <td>Actions</td>
+    </tr>
+    <tr *ngFor="let todo of toDoList; let i = index">
+      <td>{{i+1}}</td>
+      <td>{{todo}}</td>
+      <td>
+        <input type="button" value="edit" (click)="edit_todo(todo)" />
+        <input type="button" value="delete" (click)="delete_todo(todo)" />
+      </td>
+    </tr>
+  </table>
+  <div *ngIf="openEdit">
+    <form>
+      <input type="text" #todo value={{selectedEdit}} />
+      <input type="button" value="update" (click)="updatetodo(todo.value)" />
+      <input type="button" value="cancel" (click)="edit_todo(todo)" />
+    </form>
+  </div>
+</div>
