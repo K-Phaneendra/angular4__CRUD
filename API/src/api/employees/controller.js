@@ -30,6 +30,7 @@ Employees.find(query, select, cursor)
     .catch(next)
 
 export const update = ({ bodymen: { body }, params }, res, next) => {
+  console.log(params.id,'line33');
   Employees.findOneAndUpdate({ _id: params.id }, { name: body.name }, {upsert:false, new: true})
     .then(notFound(res))
     .then((employees) => employees ? _.merge(employees, body).save() : null)
@@ -38,10 +39,11 @@ export const update = ({ bodymen: { body }, params }, res, next) => {
     .catch(next)
 }
 
-export const destroy = ({ params }, res, next) =>
-Employees.findById(params.id)
+export const destroy = ({ params }, res, next) => {
+  console.log(params.id, 'line42');
+  Employees.findById(params.id)
     .then(notFound(res))
-    .then((employees) => employees ? _.merge(employees, { status: 'DELETED' }).save() : null)
+    .then((employees) => employees ? employees.remove() : null)
     .then(success(res, 204))
     .catch(next)
-
+}

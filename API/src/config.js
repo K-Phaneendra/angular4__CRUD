@@ -23,7 +23,7 @@ const config = {
   all: {
     env: process.env.NODE_ENV || 'development',
     root: path.join(__dirname, '..'),
-    port: process.env.PORT || 1212,
+    port: process.env.PORT || 4202,
     ip: process.env.IP || '0.0.0.0',
     defaultEmail: 'no-reply@tts.com',
     sendgridKey: requireProcessEnv('SENDGRID_KEY'),
@@ -39,7 +39,7 @@ const config = {
   },
   test: {
     mongo: {
-      uri: 'mongodb://localhost/tts-test',
+      uri: 'mongodb://localhost/a4App-1st',
       options: {
         debug: false
       }
@@ -47,7 +47,7 @@ const config = {
   },
   development: {
     mongo: {
-      uri: 'mongodb://localhost/bookmyleave',
+      uri: 'mongodb://localhost/a4App-1st',
       options: {
         debug: true
       }
@@ -57,7 +57,7 @@ const config = {
     ip: process.env.IP || undefined,
     port: process.env.PORT || 8080,
     mongo: {
-      uri: process.env.MONGODB_URI || 'mongodb://localhost/tts'
+      uri: process.env.MONGODB_URI || 'mongodb://localhost/a4App-1st'
     }
   }
 }

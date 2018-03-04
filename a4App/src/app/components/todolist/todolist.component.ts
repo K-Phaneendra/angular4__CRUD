@@ -42,6 +42,6 @@ export class TodolistComponent implements OnInit {
         this.toDoList[i] = editedtodo;
       }
     }
-    this.edit_todo();
+    this.edit_todo(editedtodo)
   }
 }

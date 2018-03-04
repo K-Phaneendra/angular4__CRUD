@@ -1,0 +1,38 @@
+<div>
+  <form (submit)="addNewemp(empName.value, empCode.value, empEmail.value)">
+    <label>Details of new Employee</label>
+    <input type="text" placeholder="Name" #empName />
+    <input type="text" placeholder="Code" #empCode />
+    <input type="text" placeholder="Email" #empEmail />
+    <input type="submit" value="Add" />
+  </form>
+  <table>
+    <tr>
+      <td>Sno.</td>
+      <td>Employee Name</td>
+      <td>Employee Code</td>
+      <td>Employee Email</td>
+      <td>Actions</td>
+    </tr>
+    <tr *ngFor="let emp of employees; let i = index">
+      <td>{{i+1}}</td>
+      <td>{{emp.name}}</td>
+      <td>{{emp.code}}</td>
+      <td>{{emp.email}}</td>
+      <td>
+        <input type="button" value="edit" (click)="toggle_edit(emp)" />
+        <input type="button" value="delete" (click)="delete_emp(emp)" />
+      </td>
+    </tr>
+  </table>
+  <div *ngIf="openEdit">
+    <form>
+      <input type="text" #empName value={{selectedEmpToEdit.name}} placeholder="Name" />
+      <input type="text" #empCode value={{selectedEmpToEdit.code}} placeholder="Came" />
+      <input type="text" #empEmail value={{selectedEmpToEdit.email}} placeholder="Email" />
+      <input type="button" value="update" (click)="update_emp(selectedEmpToEdit.id, empName.value, empCode.value, empEmail.value)" />
+      <input type="button" value="cancel" (click)="toggle_edit(emp)" />
+    </form>
+  </div>
+</div>
+  
