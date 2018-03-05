@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-employees-data',
@@ -12,12 +13,22 @@ export class EmployeesDataComponent implements OnInit {
   openEdit: boolean;
   selectedEmpToEdit: any;
 
+  title: string;
+  subscription: Subscription;
+
   constructor(private _dataService: DataService) {
     this._dataService.getEmployees()
     .subscribe(res => {
       console.log(res);
       this.employees = res;
     })
+    
+    // receiving data from titleSource from DataService
+    this.subscription = this._dataService.currentTitle
+    .subscribe(
+      title => this.title = "Mongo "+title,
+      err => console.log(err)
+    );
   }
 
   ngOnInit() {

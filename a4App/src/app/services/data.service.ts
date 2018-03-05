@@ -2,13 +2,23 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import  { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class DataService {
 
   result: any;
 
+  private titleSource = new BehaviorSubject<string>(null);
+  currentTitle = this.titleSource.asObservable();
+
   constructor(private _http: Http) {
+  }
+
+  changeTitleFunction(obtainedStr: string) {
+    console.log(obtainedStr);
+    this.titleSource.next(obtainedStr);
+    console.log(this.currentTitle);
   }
 
   getEmployees() {

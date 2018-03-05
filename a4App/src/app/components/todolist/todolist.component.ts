@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../../services/data.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-todolist',
@@ -11,7 +13,16 @@ export class TodolistComponent implements OnInit {
   openEdit: boolean;
   selectedEdit: string;
 
-  constructor() {
+  title: string;
+  subscription: Subscription;
+
+  constructor(private _dataService: DataService) {
+    // receiving data from titleSource from DataService
+    this.subscription = this._dataService.currentTitle
+    .subscribe(
+      title => this.title = "FrontEnd "+title,
+      err => console.log(err)
+    );
   }
 
   ngOnInit() {
