@@ -82,4 +82,8 @@ export class EmployeesDataComponent implements OnInit {
     }
   }
 
+  submitEditForm(event) {
+    console.log(event);
+  }
+
 }
