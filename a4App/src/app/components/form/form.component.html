@@ -1,0 +1,35 @@
+<div>
+  <h1>
+    Angular 4 {{title}}!!
+  </h1>
+  <h3>Form Validations</h3>
+  <img width="100" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+    
+  <form #testForm="ngForm" (submit)="submitFun(testForm.value)">
+    <div>
+      <label>First Name</label>
+      <input type="text" ngModel name="fname" #firstName="ngModel" (blur)="log(firstName)" />
+      <div *ngIf="firstName.touched && !firstName.value">* First Name is required</div>
+    </div>
+    <div>
+      <label>Last Name</label>
+      <input type="text" required minlength="3" maxlength="10" pattern="banana" ngModel name="lname" #lastName="ngModel" (blur)="log3(lastName)" />
+      <div *ngIf="lastName.touched && lastName.errors">
+        <div *ngIf="lastName.errors.required">* Last Name is Required</div>
+        <div *ngIf="lastName.errors.minlength">* Min Char = {{lastName.errors.minlength.requiredLength}}</div>
+        <div *ngIf="lastName.errors.pattern">* Pattern "banana" did not match</div>
+      </div>
+    </div>
+    <div>
+      <label>Comment</label>
+      <input type="textarea" ngModel name="comm" #comment="ngModel" (change)="log2(comment)" />
+    </div>
+    <div>
+      <input type="submit" />
+    </div>
+  </form>
+  <br/>
+  <div *ngIf="openDiv">
+    You entered FirstName as "{{formData.fname}}", LastName as "{{formData.lname}}" & comment as "{{formData.comm}}"
+  </div>
+</div>
