@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { DataService } from './services/data.service';
 import { RouterModule } from '@angular/router';
 import { FormsModule }   from '@angular/forms';
+import { MatTableModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { TodolistComponent } from './components/todolist/todolist.component';
@@ -24,6 +25,7 @@ import { FormComponent } from './components/form/form.component';
     BrowserModule,
     HttpModule,
     FormsModule,
+    MatTableModule,
     RouterModule.forRoot(
       [
         {path: 'home', component: HomeComponent},
@@ -31,7 +33,7 @@ import { FormComponent } from './components/form/form.component';
         {path: 'meanstack', component: EmployeesDataComponent},
         {path: 'forms', component: FormComponent},
       ]
-    )
+    ),
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
